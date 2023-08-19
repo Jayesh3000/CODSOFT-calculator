@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+        }
+        
+        .calculator {
+            display: grid;
+            grid-template-rows: auto repeat(4, 1fr);
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            max-width: 300px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            background-color: white;
+        }
+        
+        .btn {
+            padding: 10px;
+            font-size: 18px;
+            text-align: center;
+            background-color: purple;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .operator {
+            padding: 10px;
+            font-size: 18px;
+            text-align: center;
+            background-color: purple;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .equals {
+            padding: 10px;
+            font-size: 18px;
+            text-align: center;
+            background-color: #ff9f00;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        #display {
+            grid-column: span 4;
+            padding: 10px;
+            font-size: 24px;
+            text-align: right;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: white;
+            color: black;
+            grid-row: 1;
+        }
+    </style>
+    <title>Simple Calculator</title>
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" id="display" readonly>
+        <button id="clear" class="btn">C</button>
+        <button class="btn">1</button>
+        <button class="btn">2</button>
+        <button class="btn">3</button>
+        <button class="operator">/</button>
+        <button class="btn">4</button>
+        <button class="btn">5</button>
+        <button class="btn">6</button>
+        <button class="operator">-</button>
+        <button class="btn">7</button>
+        <button class="btn">8</button>
+        <button class="btn">9</button>
+        <button class="operator">+</button>
+        <button class="btn">.</button>
+        <button class="btn">0</button>
+        <button id="equals" class="equals">=</button>
+        <button class="operator">*</button>
+    </div>
+    <script>
+        const display = document.getElementById('display');
+        const buttons = document.querySelectorAll('.btn, .operator, .equals');
+    
+        let currentInput = '';
+    
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                const value = button.textContent;
+    
+                if (value === 'C') {
+                    currentInput = '';
+                } else if (value === '=') {
+                    currentInput = eval(currentInput).toString();
+                } else {
+                    currentInput += value;
+                }
+    
+                display.value = currentInput;
+            });
+        });
+    </script>
+</body>
+</html>
